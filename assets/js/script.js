@@ -42,14 +42,13 @@ function runGame(gameType) {
     } else if (gameType === 'subtract') {
         displaySubtractQuestion(num1, num2);
     } else {
-        alert(`Unknown game type: ${gameType}`);
-        throw `Unknown game type: ${gameType}. Aborting!`;
+        displayDivisionQuestion(num1, num2);
     }
 
 }
 
 
-/** Check the answe against the first element in
+/** Check the answer against the first element in
  * the returned calculateCorrectAnswer
  */
 function checkAnswer() {
@@ -85,8 +84,7 @@ function calculateCorrectAnswer() {
     } else if (operator === '-') {
         return [operand1 - operand2, 'subtract'];
     } else {
-        alert(`unimplemented operator ${operator}`);
-        throw `unimplemented operator ${operator}. Aborting`;
+        return [operand1 / operand2, 'division'];
     }
 
 }
@@ -126,4 +124,10 @@ function displayMultiplyQuestion(operand1, operand2) {
     document.getElementById('operand1').textContent = operand1;
     document.getElementById('operand2').textContent = operand2;
     document.getElementById('operator').textContent = 'x';
+}
+
+function displayDivisionQuestion(operand1, operand2) {
+    document.getElementById('operand1').textContent = operand1 * operand2;
+    document.getElementById('operand2').textContent = operand1 < operand2 ? operand1 : operand2;
+    document.getElementById('operator').textContent = '/';
 }
